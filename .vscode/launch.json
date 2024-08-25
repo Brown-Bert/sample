@@ -14,7 +14,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build/bin",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false, // 是设置是否远程连接调试
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -40,7 +40,7 @@
             "stopAtEntry": false,
             // "cwd": "${workspaceFolder}/build/bin",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false,
             "MIMode": "gdb",
             "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
