@@ -19,52 +19,79 @@
 # -cppcoreguidelines-pro-type-member-init: buggy unfortunately
 
 Checks: >
-  *,
-  -cppcoreguidelines-avoid-non-const-global-variables,
-  -cert-err58-cpp,
-  -fuchsia-statically-constructed-objects,
-  -readability-magic-numbers,
-  -cppcoreguidelines-avoid-magic-numbers,
-  -cppcoreguidelines-narrowing-conversions,
-  -performance-enum-size,
-  -llvmlibc-inline-function-decl,
-  -hicpp-vararg,
-  -cppcoreguidelines-pro-type-vararg,
-  -altera-id-dependent-backward-branch,
-  -altera-struct-pack-align,
-  -altera-unroll-loops,
-  -bugprone-easily-swappable-parameters,
-  -cert-dcl16-c,
-  -cert-dcl21-cpp,
-  -clang-analyzer-deadcode,
-  -clang-diagnostic-error,
-  -clang-diagnostic-unused-macros,
-  -cppcoreguidelines-macro-usage,
-  -cppcoreguidelines-non-private-member-variables-in-classes,
-  -cppcoreguidelines-owning-memory,
-  -cppcoreguidelines-pro-type-member-init,
-  -cppcoreguidelines-pro-type-reinterpret-cast,
-  -cppcoreguidelines-special-member-functions,
-  -fuchsia-default-arguments-calls,
-  -fuchsia-default-arguments-declarations,
-  -fuchsia-overloaded-operator,
-  -fuchsia-trailing-return,
-  -google-explicit-constructor,
-  -google-readability-avoid-underscore-in-googletest-name,
-  -google-readability-braces-around-statements,
-  -hicpp-braces-around-statements,readability-braces-around-statements,
-  -hicpp-deprecated-headers,
-  -hicpp-explicit-conversions,
-  -hicpp-member-init,
-  -hicpp-named-parameter,
-  -hicpp-special-member-functions,
-  -hicpp-uppercase-literal-suffix,
-  -llvmlibc-callee-namespace,
-  -llvmlibc-implementation-in-namespace,
-  -llvm-include-order,
-  -llvmlibc-restrict-system-libc-headers,
-  -llvm-header-guard,
-  -misc-non-private-member-variables-in-classes,
-  -modernize-deprecated-headers,
-  -modernize-use-trailing-return-type,
-  -readability-braces-a
+  *, # 启用所有默认检查规则
+  
+  # CERT安全规则
+  -cert-err58-cpp, # 禁用：避免静态对象初始化顺序问题
+  -cert-dcl16-c,   # 禁用：避免重复声明
+  -cert-dcl21-cpp, # 禁用：限制函数指针转换
+  
+  # C++核心指南规则
+  -cppcoreguidelines-avoid-non-const-global-variables, # 禁用：避免非const全局变量
+  -cppcoreguidelines-avoid-magic-numbers,               # 禁用：避免魔术数字
+  -cppcoreguidelines-narrowing-conversions,             # 禁用：避免窄化转换
+  -cppcoreguidelines-pro-type-vararg,                   # 禁用：限制可变参数使用
+  -cppcoreguidelines-macro-usage,                       # 禁用：限制宏的使用
+  -cppcoreguidelines-non-private-member-variables-in-classes, # 禁用：要求类成员变量私有
+  -cppcoreguidelines-owning-memory,                     # 禁用：管理内存所有权
+  -cppcoreguidelines-pro-type-member-init,              # 禁用：要求成员变量初始化
+  -cppcoreguidelines-pro-type-reinterpret-cast,         # 禁用：禁止使用reinterpret_cast
+  -cppcoreguidelines-special-member-functions,          # 禁用：管理特殊成员函数
+  
+  # Fuchsia项目规则
+  -fuchsia-statically-constructed-objects,              # 禁用：避免静态构造对象
+  -fuchsia-default-arguments-calls,                     # 禁用：限制默认参数调用
+  -fuchsia-default-arguments-declarations,              # 禁用：限制默认参数声明
+  -fuchsia-overloaded-operator,                         # 禁用：限制操作符重载
+  -fuchsia-trailing-return,                             # 禁用：强制使用尾置返回类型
+  
+  # Google代码风格规则
+  -google-explicit-constructor,                         # 禁用：要求单参数构造函数显式
+  -google-readability-avoid-underscore-in-googletest-name, # 禁用：禁止测试名中的下划线
+  -google-readability-braces-around-statements,         # 禁用：要求语句使用括号
+  
+  # HICPP规则
+  -hicpp-vararg,                                        # 禁用：限制可变参数
+  -hicpp-braces-around-statements,                      # 禁用：要求语句使用括号
+  -hicpp-deprecated-headers,                            # 禁用：禁止使用旧头文件
+  -hicpp-explicit-conversions,                          # 禁用：要求显式类型转换
+  -hicpp-member-init,                                   # 禁用：要求成员初始化
+  -hicpp-named-parameter,                               # 禁用：要求参数命名
+  -hicpp-special-member-functions,                      # 禁用：管理特殊成员函数
+  -hicpp-uppercase-literal-suffix,                      # 禁用：要求字面量后缀大写
+  
+  # LLVM项目规则
+  -llvmlibc-inline-function-decl,                       # 禁用：LLVM libc内联函数规则
+  -llvmlibc-callee-namespace,                           # 禁用：LLVM libc命名空间规则
+  -llvmlibc-implementation-in-namespace,                # 禁用：LLVM libc实现命名空间
+  -llvm-include-order,                                  # 禁用：LLVM头文件包含顺序
+  -llvmlibc-restrict-system-libc-headers,               # 禁用：限制系统libc头文件
+  -llvm-header-guard,                                   # 禁用：LLVM头文件保护宏格式
+  
+  # 可读性规则
+  -readability-magic-numbers,                           # 禁用：避免魔术数字
+  -readability-braces-a,                                # 禁用：语句括号规则（截断）
+  readability-braces-around-statements,                 # 启用：要求语句使用括号
+  
+  # 现代化规则
+  -modernize-deprecated-headers,                        # 禁用：禁止使用旧头文件
+  -modernize-use-trailing-return-type,                  # 禁用：强制使用尾置返回类型
+  
+  # 性能规则
+  -performance-enum-size,                               # 禁用：优化枚举大小
+  
+  # Altera FPGA特定规则
+  -altera-id-dependent-backward-branch,                 # 禁用：Altera FPGA特定规则
+  -altera-struct-pack-align,                            # 禁用：Altera FPGA结构体对齐
+  -altera-unroll-loops,                                 # 禁用：Altera FPGA循环展开
+  
+  # Bugprone规则
+  -bugprone-easily-swappable-parameters,                # 禁用：避免易交换的参数
+  
+  # Clang分析器规则
+  -clang-analyzer-deadcode,                             # 禁用：检测死代码
+  -clang-diagnostic-error,                              # 禁用：禁止错误级诊断
+  -clang-diagnostic-unused-macros,                      # 禁用：禁止未使用宏警告
+  
+  # Misc规则
+  -misc-non-private-member-variables-in-classes         # 禁用：要求成员变量私有
