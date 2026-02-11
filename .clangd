@@ -1,2 +1,8 @@
 CompileFlags:
-    CompilationDatabase: ./build
+  Add: [-std=c++17]
+
+CompilationDatabase:
+  Path: ./Build
+
+Index:
+  Background: Skip
